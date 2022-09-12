@@ -11,7 +11,6 @@
 <!-- 
     https://github.com/handlebars-lang/handlebars.js
     https://github.com/axios/axios
-    https://github.com/lodash/lodash
     https://github.com/jquery/jquery
     https://github.com/Semantic-Org/Semantic-UI
  -->
@@ -40,8 +39,7 @@
 
 </body>
 
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios@0.27.2/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/handlebars@4.7.7/dist/handlebars.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
@@ -71,13 +69,13 @@
     function setLanguage(lang) {
         let langCode;
         if (lang == undefined) {
-            let language = window.navigator.userLanguage || window.navigator.language;
-            langCode = language.split('-')[0];
+            let language = window.navigator.userLanguage || window.navigator.language; // es-AR es-ES en-US en-UK
+            langCode = language.split('-')[0]; // ['es', 'AR']
         } else {
             langCode = lang;
         }
 
-        axios.get(`/lang/${langCode}.json`)
+        axios.get(`/lang/${langCode}.json`) // /lang/es.json
             .then(ajax => renderTemplate(JSON.stringify(ajax.data)))
             .catch(e => console.log(e))
     }
