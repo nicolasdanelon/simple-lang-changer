@@ -60,10 +60,10 @@
     function renderTemplate(data) {
         data = JSON.parse(data);
 
-        const source = $('#template').html();
+        const source = document.getElementById('template').innerHTML;
         const template = Handlebars.compile(source);
         const result = template(data);
-        const app = $('#app').html(result);
+        const app = document.getElementById('app').innerHTML = result;
     }
 
     function setLanguage(lang) {
